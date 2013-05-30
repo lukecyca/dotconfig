@@ -1,0 +1,188 @@
+set nocompatible
+
+" Turn filetype on then off to workaround vundle isse
+" https://github.com/gmarik/vundle/pull/53
+filetype on
+filetype off
+
+set rtp+=~/.config/vim/bundle/vundle/
+call vundle#rc('~/.config/vim/bundle')
+
+" let Vundle manage Vundle, required
+" git clone http://github.com/gmarik/vundle.git ~/.config/vim/bundle/vundle
+Bundle 'gmarik/vundle'
+
+" Navigation
+Bundle 'kien/ctrlp.vim'
+
+" Tools
+Bundle 'scrooloose/syntastic'
+Bundle 'ciaranm/detectindent'
+
+" Python Language Additions
+Bundle 'vim-scripts/mako.vim'
+Bundle 'vim-scripts/python.vim'
+Bundle 'vim-scripts/pylint.vim'
+Bundle 'hynek/vim-python-pep8-indent'
+Bundle 'vim-scripts/genshi.vim'
+Bundle 'vim-scripts/textgenshi.vim'
+
+" JavaScript Language Additions
+Bundle 'pangloss/vim-javascript'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'hallettj/jslint.vim'
+
+" Misc
+Bundle 'altercation/vim-colors-solarized'
+
+
+filetype plugin indent on
+
+" Platform Specific Configuration
+if has('gui_macvim')
+  set guifont=Menlo\ Regular:h12
+
+  if has("gui_running")
+
+    " Don't display the menu or toolbar
+    set guioptions-=m
+    set guioptions-=T
+
+    " Remove the scrollbars
+    set guioptions-=r
+    set guioptions-=l
+    set guioptions-=L
+
+  endif
+endif
+
+" Backups
+set nobackup
+set nowritebackup
+
+" UI
+set background=dark
+colorscheme solarized
+set fillchars=""
+set laststatus=2  " Always show the statusline
+set mousehide
+set scrolloff=8
+set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
+set showcmd
+set showmode
+
+" Behaviors
+syntax enable
+set autoread           " Automatically reload changes if detected
+set wildmenu           " Turn on WiLd menu
+set wildignore+=*.o,*.obj,*.pyc,.git,build/*
+set history=768        " Number of things to remember in history.
+set cf                 " Enable error files & error jumping.
+set autowrite          " Writes on make/shell commands
+set timeoutlen=250     " Time to wait for a command (after leader for example)
+set foldlevelstart=99  " Remove folds
+set formatoptions=crql
+set vb
+set wrap linebreak textwidth=0
+
+" Text Format
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+
+" Searching
+set ignorecase " Case insensitive search
+set smartcase " Non-case sensitive search
+set incsearch
+set hlsearch
+
+" Visual
+set showmatch  " Show matching brackets.
+set matchtime=2 " How many tenths of a second to blink
+
+" Sounds
+set vb
+
+" Mouse
+set mousehide  " Hide mouse after chars typed
+set mouse=a  " Mouse in all modes
+
+" Better complete options to speed it up
+set complete=.,w,b,u,U
+
+" Bindings
+
+" Avoid the ESC key
+inoremap jj <Esc>
+
+" Window Movement
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+" Set leader to ,
+let mapleader=","
+
+" Toggle highlighting
+nmap <silent> <leader>n :set invhls<CR>:set hls?<CR>
+
+" Underlining
+nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
+nmap <silent> <leader>ull :t.\|s/./-/g\|set nohls<cr>
+nmap <silent> <leader>uls :t.\|s/./*/g\|set nohls<cr>
+
+nmap <silent> <leader>cd :lcd %:h<CR>
+nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>v :e $MYVIMRC<CR>
+nmap <silent> <leader>gg :execute " grep -srnw --binary-files=without-match --exclude=.git . -e " . expand("<cword>") . " " <bar> cwindow<CR>
+
+
+" Auto Commands
+" Remove any trailing whitespace that is in the file
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
+" Detect indentation style
+autocmd BufReadPost,BufNewFile * :DetectIndent
+
+autocmd FocusLost * :wa
+
+autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType ruby set omnifunc=rubycomplete#Complete
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set noexpandtab
+autocmd FileType genshi set noexpandtab
+
+" Map filenames to filetypes
+au BufRead,BufNewFile *.genshi set filetype=genshi
+au BufRead,BufNewFile *.mako set filetype=mako
+au BufRead,BufNewFile *.mak set filetype=mako
+au BufRead,BufNewFile */patches/* set filetype=diff
+
+
+" Reload vimrc after saving
+augroup VimReload
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+" CtrlP (Set up like Command-T)
+nmap <Leader>t :CtrlP<CR>
+nmap <silent><C-f> :CtrlPClearCache<CR>
+
+" Vundle
+nmap <Leader>bi :BundleInstall<CR>
+nmap <Leader>bi! :BundleInstall!<CR>
+nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
+nmap <Leader>bc :BundleClean<CR>
+
+" Syntastic options
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = '--ignore=W404 --max-complexity=12 --max-line-length=99'
+
+

@@ -1,0 +1,16 @@
+[ui]
+username = Luke Cyca <me@lukecyca.com>
+
+[extensions]
+color=
+mq=
+hgext.bookmarks=
+hggit=
+convert=
+purge=
+hgext.extdiff =
+prompt = ~/Code/hg-prompt/prompt.py
+
+[hostfingerprints]
+hg.zymeworks.com = 5d:66:b1:c0:a7:89:c4:48:3e:0b:ea:48:b6:a3:49:a8:ae:a8:2b:38
+bcfg2.zymeworks.com = 42:3b:c2:1c:04:2f:95:d9:16:a7:b1:fa:fc:10:25:a1:e2:89:5d:d9
