@@ -38,7 +38,6 @@ Bundle 'vim-scripts/textgenshi.vim'
 " JavaScript Language Additions
 Bundle 'pangloss/vim-javascript'
 Bundle 'maksimr/vim-jsbeautify'
-Bundle 'hallettj/jslint.vim'
 
 " Misc
 Bundle 'jnwhiteh/vim-golang'
@@ -193,6 +192,5 @@ nmap <Leader>bc :BundleClean<CR>
 
 " Syntastic options
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--ignore=W404 --max-complexity=12 --max-line-length=99'
-
+let g:syntastic_python_flake8_args = '--ignore=W404 --max-complexity=12 --max-line-length=100'
 
