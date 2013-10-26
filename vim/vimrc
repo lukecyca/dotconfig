@@ -8,6 +8,14 @@ filetype off
 set rtp+=~/.config/vim/bundle/vundle/
 call vundle#rc('~/.config/vim/bundle')
 
+" Golang: https://github.com/jnwhiteh/vim-golang
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOPATH/misc/vim
+filetype plugin indent on
+syntax on
+
+
 " let Vundle manage Vundle, required
 " git clone http://github.com/gmarik/vundle.git ~/.config/vim/bundle/vundle
 Bundle 'gmarik/vundle'
@@ -33,6 +41,7 @@ Bundle 'maksimr/vim-jsbeautify'
 Bundle 'hallettj/jslint.vim'
 
 " Misc
+Bundle 'jnwhiteh/vim-golang'
 Bundle 'altercation/vim-colors-solarized'
 
 
@@ -159,6 +168,7 @@ autocmd FileType xml set noexpandtab
 autocmd FileType genshi set noexpandtab
 
 " Map filenames to filetypes
+au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.genshi set filetype=genshi
 au BufRead,BufNewFile *.mako set filetype=mako
 au BufRead,BufNewFile *.mak set filetype=mako

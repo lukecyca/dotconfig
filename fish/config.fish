@@ -8,3 +8,4 @@ set -gx WORKON_HOME ~/.virtualenvs
 . ~/.config/fish/virtualenv.fish
 . ~/.config/fish/prompt.fish
 
+set -gx GOPATH ~/Code/gocode
