@@ -41,7 +41,13 @@ Bundle 'maksimr/vim-jsbeautify'
 
 " Misc
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'tclem/vim-arduino'
+Bundle 'vim-scripts/Arduino-syntax-file'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'reedes/vim-quotable'
+Bundle 'kana/vim-textobj-user'
+Bundle 'groenewege/vim-less'
+Bundle 'jimenezrick/vimerl'
 
 
 filetype plugin indent on
@@ -149,6 +155,9 @@ nmap <silent> <leader>gg :execute " grep -srnw --binary-files=without-match --ex
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+" gofmt
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
 " Detect indentation style
 autocmd BufReadPost,BufNewFile * :DetectIndent
 
@@ -167,11 +176,14 @@ autocmd FileType xml set noexpandtab
 autocmd FileType genshi set noexpandtab
 
 " Map filenames to filetypes
+au BufRead,BufNewFile *.less set filetype=less
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.genshi set filetype=genshi
 au BufRead,BufNewFile *.mako set filetype=mako
 au BufRead,BufNewFile *.mak set filetype=mako
 au BufRead,BufNewFile */patches/* set filetype=diff
+au BufRead,BufNewFile *.pde set filetype=arduino
+au BufRead,BufNewFile *.ino set filetype=arduino
 
 
 " Reload vimrc after saving

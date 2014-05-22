@@ -5,7 +5,6 @@ username = Luke Cyca <me@lukecyca.com>
 color=
 mq=
 hgext.bookmarks=
-hggit=
 convert=
 purge=
 hgext.extdiff =
