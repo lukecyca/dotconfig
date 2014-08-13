@@ -5,8 +5,8 @@ set nocompatible
 filetype on
 filetype off
 
-set rtp+=~/.config/vim/bundle/vundle/
-call vundle#rc('~/.config/vim/bundle')
+set rtp+=~/.config/vim/bundle/Vundle.vim
+call vundle#begin('~/.config/vim/bundle')
 
 " Golang: https://github.com/jnwhiteh/vim-golang
 filetype off
@@ -17,39 +17,39 @@ syntax on
 
 
 " let Vundle manage Vundle, required
-" git clone http://github.com/gmarik/vundle.git ~/.config/vim/bundle/vundle
-Bundle 'gmarik/vundle'
+" git clone http://github.com/gmarik/vundle.git ~/.config/vim/bundle/Vundle.vim
+Plugin 'gmarik/Vundle.vim'
 
 " Navigation
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 " Tools
-Bundle 'scrooloose/syntastic'
-Bundle 'ciaranm/detectindent'
+Plugin 'scrooloose/syntastic'
+Plugin 'ciaranm/detectindent'
 
 " Python Language Additions
-Bundle 'vim-scripts/mako.vim'
-Bundle 'vim-scripts/python.vim'
-Bundle 'vim-scripts/pylint.vim'
-Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'vim-scripts/genshi.vim'
-Bundle 'vim-scripts/textgenshi.vim'
+Plugin 'vim-scripts/mako.vim'
+Plugin 'vim-scripts/python.vim'
+Plugin 'vim-scripts/pylint.vim'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'vim-scripts/genshi.vim'
+Plugin 'vim-scripts/textgenshi.vim'
 
 " JavaScript Language Additions
-Bundle 'pangloss/vim-javascript'
-Bundle 'maksimr/vim-jsbeautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'
 
 " Misc
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'tclem/vim-arduino'
-Bundle 'vim-scripts/Arduino-syntax-file'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'reedes/vim-quotable'
-Bundle 'kana/vim-textobj-user'
-Bundle 'groenewege/vim-less'
-Bundle 'jimenezrick/vimerl'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'tclem/vim-arduino'
+Plugin 'vim-scripts/Arduino-syntax-file'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'reedes/vim-quotable'
+Plugin 'kana/vim-textobj-user'
+Plugin 'groenewege/vim-less'
+Plugin 'jimenezrick/vimerl'
 
-
+call vundle#end()
 filetype plugin indent on
 
 " Platform Specific Configuration
@@ -197,10 +197,9 @@ nmap <Leader>t :CtrlP<CR>
 nmap <silent><C-f> :CtrlPClearCache<CR>
 
 " Vundle
-nmap <Leader>bi :BundleInstall<CR>
-nmap <Leader>bi! :BundleInstall!<CR>
-nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
-nmap <Leader>bc :BundleClean<CR>
+nmap <Leader>bi :PluginInstall<CR>
+nmap <Leader>bu :PluginInstall!<CR>
+nmap <Leader>bc :PluginClean<CR>
 
 " Syntastic options
 let g:syntastic_python_checkers = ['flake8']

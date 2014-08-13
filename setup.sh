@@ -5,4 +5,4 @@ ln -is ~/.config/gitconfig ~/.gitconfig
 ln -is ~/.config/hgrc ~/.hgrc
 ln -is ~/.config/bashrc ~/.bashrc
 
-git clone http://github.com/gmarik/vundle.git ~/.config/vim/bundle/vundle
+git clone https://github.com/gmarik/Vundle.vim.git ~/.config/vim/bundle/Vundle.vim
