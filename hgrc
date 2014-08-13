@@ -8,4 +8,3 @@ hgext.bookmarks=
 convert=
 purge=
 hgext.extdiff =
-prompt = ~/Code/hg-prompt/prompt.py
