@@ -40,7 +40,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
 
 " Misc
-Plugin 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
 Plugin 'tclem/vim-arduino'
 Plugin 'vim-scripts/Arduino-syntax-file'
 Plugin 'altercation/vim-colors-solarized'
@@ -155,9 +155,6 @@ nmap <silent> <leader>gg :execute " grep -srnw --binary-files=without-match --ex
 " Auto Commands
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-
-" gofmt
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " Detect indentation style
 autocmd BufReadPost,BufNewFile * :DetectIndent
