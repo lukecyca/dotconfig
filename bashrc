@@ -1,4 +1,7 @@
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
 export GOPATH=~/Code/gocode
 
-export DOCKER_HOST=tcp://127.0.0.1:4243
-
+function cdgo {
+    cd ~/Code/gocode/src/$1
+}
